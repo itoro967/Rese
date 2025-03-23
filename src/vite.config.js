@@ -17,7 +17,7 @@ export default defineConfig({
     },
     resolve: {
     alias: {
-        common: '/resources/views/common',
+        common: '/resources/js/common',
         img: '/resources/img',
     },
     },

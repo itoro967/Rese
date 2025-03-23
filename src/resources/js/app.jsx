@@ -1,10 +1,12 @@
-// import 'reset-css'
-import { createRoot } from 'react-dom/client';
-import Header from 'common/header.jsx';
+import { createInertiaApp } from '@inertiajs/react'
+import { createRoot } from 'react-dom/client'
 
-const root = createRoot(document.getElementById('app'));
-root.render(
-    <div>
-        <Header />
-    </div>
-);
+createInertiaApp({
+  resolve: name => {
+    const pages = import.meta.glob('./Pages/**/*.jsx', { eager: true })
+    return pages[`./Pages/${name}.jsx`]
+  },
+  setup({ el, App, props }) {
+    createRoot(el).render(<App {...props} />)
+  },
+})
