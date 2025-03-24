@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Area;
+use App\Models\Genre;
+use App\Models\Restaurant;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -12,9 +15,10 @@ class RestaurantController extends Controller
      */
     public function index()
     {
-        return Inertia::render('index', [
-            'image_url'=> asset('storage/restaurants/sushi.jpg'),
-        ]);
+        $restaurants = Restaurant::with(['genre','area'])->get();
+        $genres = Genre::all()->select('name');
+        $areas = Area::all()->select('name');
+        return Inertia::render('index',compact('restaurants','genres','areas'));
     }
 
     /**
