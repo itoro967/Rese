@@ -17,7 +17,7 @@ export default defineConfig({
     },
     resolve: {
     alias: {
-        common: '/resources/js/common',
+        "@": '/resources/js',
         img: '/resources/img',
     },
     },

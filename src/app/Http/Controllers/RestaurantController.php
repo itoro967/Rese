@@ -13,9 +13,10 @@ class RestaurantController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $restaurants = Restaurant::with(['genre','area'])->get();
+    public function index(Request $request)
+    {   $datas=$request->only('genre','area','keyword');
+        // 通信量削減のため必要なカラムのみ取得
+        $restaurants = Restaurant::with(['genre','area'])->search($datas)->select('id','name','image_url','genre_id','area_id')->get();
         $genres = Genre::all()->select('name');
         $areas = Area::all()->select('name');
         return Inertia::render('index',compact('restaurants','genres','areas'));
@@ -40,9 +41,10 @@ class RestaurantController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function detail(string $id)
     {
-        //
+        $restaurant = Restaurant::with(['genre','area'])->select('id','name','image_url','description','genre_id','area_id')->find($id);
+        return Inertia::render('detail',compact('restaurant'));
     }
 
     /**

@@ -1,14 +1,14 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { useState } from 'react'
-export default function Example({ group_name, items }) {
-  const [name, setName] = useState("All "+group_name);
+export default function Example({ group_name, items,formData,setData }) {
+  const all_select = "All "+group_name;
   items = items.map((item) => {
     return (
       <MenuItem key={item}>
         <a
           href="#"
-          onClick={() => setName(item)}
+          onClick={()=>setData(group_name,item)}
           className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
         >
           {item}
@@ -20,7 +20,7 @@ export default function Example({ group_name, items }) {
     <Menu as="div" className="relative inline-block text-left">
       <div>
         <MenuButton className="inline-flex w-full justify-center gap-x-1.5 bg-white px-3 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-50">
-          {name}
+          {formData ?? all_select}
           <ChevronDownIcon aria-hidden="true" className="-mr-1 size-5 text-gray-400" />
         </MenuButton>
       </div>
@@ -31,13 +31,13 @@ export default function Example({ group_name, items }) {
       >
         <div className="py-1">
           {/* 全選択 */}
-          <MenuItem key={group_name}>
+          <MenuItem key={all_select}>
             <a
               href="#"
-              onClick={() => setName("All "+group_name)}
+              onClick={() => setData(group_name,all_select)}
               className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
             >
-              All {group_name}
+              {all_select}
             </a>
           </MenuItem>
           {/*  */}

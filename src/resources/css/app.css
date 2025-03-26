@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source "../node_modules/flowbite-datepicker";
 /* body{
     background-color: #e2e2e2;
 } */
