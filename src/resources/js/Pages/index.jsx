@@ -1,5 +1,5 @@
 import AppLayout from '@/Layout/AppLayout';
-import favorite from 'img/favorite.svg';
+import { MdFavoriteBorder } from "react-icons/md";
 import { Link } from '@inertiajs/react';
 
 function RestaurantsCard({ data }) {
@@ -12,8 +12,8 @@ function RestaurantsCard({ data }) {
         <span className="p-2 fg-gray">#{data.genre.name}</span>
       </div>
       <div className="flex justify-between items-center px-5">
-        <Link href={`/detail/${data.id}`} className="inline-block text-white bg-blue-500 px-2 py-1 mx-2 my-6 rounded-lg shadow-lg active:shadow-none ">詳しく見る</Link>
-        <img src={favorite} className="inline size-10 cursor-pointer fill-red-600 hover:size-11 active:size-10" />
+        <Link href={`/detail/${data.id}`} className="inline-block text-white bg-blue-500 hover:bg-blue-600 px-2 py-1 mx-2 my-6 rounded-lg shadow-lg active:shadow-none ">詳しく見る</Link>
+        <MdFavoriteBorder className="size-10 cursor-pointer fill-gray-300 hover:size-11 active:size-10" />
       </div>
     </div>
   </div>)

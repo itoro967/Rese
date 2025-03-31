@@ -1,6 +1,6 @@
 import AppLayout from "@/Layout/AppLayout";
 import { Link, useForm } from "@inertiajs/react";
-import back_icon from "img/arrow_back.svg";
+import { IoIosArrowBack } from "react-icons/io";
 function ReservationCard({ name }) {
     const { data, setData, post } = useForm({ date: "", time: "", gest_count: "1" });
     function submit(e) {
@@ -53,7 +53,7 @@ export default function App({ restaurant }) {
             <div className="flex justify-center gap-10 mx-10 h-140">
                 <div className="h-full w-1/2">
                     <div className="font-bold text-3xl flex items-center">
-                        <Link as="img" src={back_icon} href="/" className="cursor-pointer inline bg-white rounded-md shadow-md"></Link>
+                        <Link href="/" className="m-2"><IoIosArrowBack className=" size-6 fill-black bg-white rounded-md cursor-pointer hover:bg-gray-100" /></Link>
                         <span className="m-2">{restaurant.name}</span>
                     </div>
                     <img src={restaurant.image_url} className="object-contain w-150"/>
