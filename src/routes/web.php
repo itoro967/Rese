@@ -12,6 +12,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/mypage', [UserController::class, 'mypage'])->name('mypage');
     Route::post('/favorite', [FavoriteController::class, 'store'])->name('favorite.store');
     Route::post('/unfavorite', [FavoriteController::class, 'destroy'])->name('favorite.destroy');
+    Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 });
 
 Route::get('/detail/{id}', [RestaurantController::class, 'detail'])->name('detail');

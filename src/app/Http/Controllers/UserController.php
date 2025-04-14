@@ -20,6 +20,15 @@ class UserController extends Controller
     {
         return Inertia::render('login');
     }
+
+    public function logout(Request $request): RedirectResponse
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('login');
+    }
+
     public function register()
     {
         return Inertia::render('register');
@@ -42,6 +51,7 @@ class UserController extends Controller
             'email' => __('auth.failed'),
         ])->onlyInput('email');
     }
+    
     public function registerUser(Request $request): RedirectResponse
     {
         $request->validate([
