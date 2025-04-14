@@ -19,16 +19,19 @@ function LoginForm() {
     <form onSubmit={submit} className="inline-block bg-white shadow-md rounded-md m-10">
       <div className="bg-blue-500 text-white rounded-t-md p-2">Register</div>
       <div className="p-4">
+        {errors.name && <div className="text-red-500">{errors.name}</div>}
         <div className="flex items-center">
           <FaUser className="size-6" /><input className="m-2 border-b border-gray-400 w-60" placeholder="Name" value={data.name} onChange={e => setData('name', e.target.value)} />
           </div>
-          {/* {errors.name && <div>{errors.name}</div>} */}
+        {errors.email && <div className="text-red-500">{errors.email}</div>}
         <div className="flex items-center">
           <IoMdMail className="size-6" /><input className="m-2 border-b border-gray-400 w-60" placeholder="Email" value={data.email} onChange={e=>setData('email',e.target.value)}/>
           </div>
+        {errors.password && <div className="text-red-500">{errors.password}</div>}
         <div className="flex items-center">
           <IoMdLock className="size-6" /><input className="m-2 border-b border-gray-400 w-60" placeholder="Password" value={data.password} onChange={e=>setData('password',e.target.value)}/>
           </div>
+        {errors.password_confirmation && <div className="text-red-500">{errors.password_confirmation}</div>}
         <div className="flex items-center">
           <IoMdLock className="size-6" /><input className="m-2 border-b border-gray-400 w-60" placeholder="Password Confirmation" value={data.password_confirmation} onChange={e=>setData('password_confirmation',e.target.value)}/>
           </div>

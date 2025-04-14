@@ -26,6 +26,7 @@ restaurants ||--o{ favorites:""
 users ||--o{ reservations:""
 restaurants ||--o{ reservations:""
 genres ||--o{ restaurants:""
+areas ||--o{ restaurants:""
 users{
     unsigned_bigint id PK
     string name
@@ -54,7 +55,7 @@ reservations{
 restaurants{
     unsigned_bigint id PK
     string name
-    string area
+    unsigned_int area_id FK
     unsigned_int genre_id FK
     text description
     string image_url
@@ -62,6 +63,12 @@ restaurants{
     timestamp updated_at
 }
 genres{
+    unsigned_bigint id PK
+    string name
+    timestamp created_at
+    timestamp updated_at
+}
+areas{
     unsigned_bigint id PK
     string name
     timestamp created_at

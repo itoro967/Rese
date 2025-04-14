@@ -19,7 +19,8 @@ class RestaurantController extends Controller
         $restaurants = Restaurant::with(['genre','area'])->search($datas)->select('id','name','image_url','genre_id','area_id')->get();
         $genres = Genre::all()->select('name');
         $areas = Area::all()->select('name');
-        return Inertia::render('index',compact('restaurants','genres','areas'));
+        $user = auth()->user();
+        return Inertia::render('index',compact('restaurants','genres','areas','user'));
     }
 
     /**

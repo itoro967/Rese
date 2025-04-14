@@ -16,6 +16,9 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->restrictOnDelete();
             $table->foreignId('restaurant_id')->constrained()->restrictOnDelete();
             $table->timestamps();
+
+            // ユーザーとレストランの組み合わせがユニークになるようにする
+            $table->unique(['user_id', 'restaurant_id']);
         });
     }
 

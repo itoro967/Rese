@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 
 class Restaurant extends Model
@@ -14,6 +15,11 @@ class Restaurant extends Model
     {
         return $this->belongsTo(Area::class)->select('id','name');
     }
+    public function favorites()
+    {
+        return $this->belongsToMany(User::class, 'favorites');
+    }
+
     public function scopeSearch($query, $datas)
     {
         if(isset($datas['genre'])){
@@ -35,4 +41,11 @@ class Restaurant extends Model
         }
         return $query;
     }
+    protected function isFavorite(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->favorites()->where('user_id', auth()->id())->exists(),
+        );
+    }
+    protected $appends = ['is_favorite'];
 }

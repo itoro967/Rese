@@ -9,6 +9,13 @@ use Inertia\Inertia;
 use App\Models\User;
 class UserController extends Controller
 {
+    function mypage()
+    {
+        $user = Auth::user();
+        $restaurants = $user->favorites()->with(['genre','area'])->select('restaurants.id','name','image_url','genre_id','area_id')->get();
+        return Inertia::render('mypage',compact('user','restaurants'));
+    }
+    
     public function login()
     {
         return Inertia::render('login');
@@ -28,11 +35,11 @@ class UserController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('dashboard');
+            return redirect()->intended(route('mypage'));
         }
 
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => __('auth.failed'),
         ])->onlyInput('email');
     }
     public function registerUser(Request $request): RedirectResponse
