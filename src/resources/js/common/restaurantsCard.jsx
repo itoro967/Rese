@@ -7,7 +7,7 @@ function FavoriteButton({ restaurant }) {
                 <MdFavorite className="size-10 cursor-pointer fill-red-500 hover:size-11 active:size-10" />
                 : <MdFavoriteBorder className="size-10 cursor-pointer fill-gray-300 hover:size-11 active:size-10" />;
   return(
-    <Link href={url} method="post" data={{ restaurant_id: restaurant.id }} only={['restaurants']}>
+    <Link href={url} method="post" data={{ restaurant_id: restaurant.id }} only={['restaurants']} preserveScroll>
       {icon}
   </Link>
   )

@@ -1,8 +1,21 @@
 # Rese - 飲食店予約サービス
 ## 環境構築
-### Dockerビルド
-### Laravel環境構築
+### MAC Makefile
+1. ```git clone https://github.com/itoro967/Rese.git```
+1. ```cd Rese```
+1. ```make init```
+1. ```docker compose exec php npm run dev```
 ### 使用技術
+- mysql 9.0.1
+- nginx 1.27.2
+- mailhog latest
+- php 8.2-fpm
+- Laravel 11
+- vite 6.0.11
+- React 19.0.0
+- tailwind 4.0.15
+- inertia 2.0.5
+
 ## URL
 ## 備考
 
@@ -37,8 +50,8 @@ users{
 }
 favorites{
     unsigned_bigint id PK
-    unsigned_bigint user_id FK
-    unsigned_bigint restaurant_id FK
+    unsigned_bigint user_id FK,UK "組み合わせユニーク"
+    unsigned_bigint restaurant_id FK,UK "組み合わせユニーク"
     timestamp created_at
     timestamp updated_at
 }
