@@ -6,5 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reservation extends Model
 {
-    //
+    protected $fillable = [
+        'restaurant_id',
+        'date',
+        'time',
+        'guest_count',
+    ];
+    public function restaurant()
+    {
+        return $this->belongsTo(Restaurant::class);
+    }
 }

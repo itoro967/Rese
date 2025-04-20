@@ -49,4 +49,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Restaurant::class, 'favorites')->withTimestamps();
     }
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
 }

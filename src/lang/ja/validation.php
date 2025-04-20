@@ -10,5 +10,8 @@ return [
         'email' => 'メールアドレス',
         'password' => 'パスワード',
         'password_confirmation' => 'パスワード確認',
+        'date' => '日付',
+        'time' => '時間',
+        'guest_count' => '人数',
     ],
 ];

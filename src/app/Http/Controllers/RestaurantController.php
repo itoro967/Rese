@@ -45,7 +45,8 @@ class RestaurantController extends Controller
     public function detail(string $id)
     {
         $restaurant = Restaurant::with(['genre','area'])->select('id','name','image_url','description','genre_id','area_id')->find($id);
-        return Inertia::render('detail',compact('restaurant'));
+        $user = auth()->user();
+        return Inertia::render('detail',compact('restaurant','user'));
     }
 
     /**
