@@ -6,17 +6,12 @@ import { IoCloseSharp } from "react-icons/io5";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaSearch } from "react-icons/fa";
 
-function Menu({ onClick, user }) {
-    const items = [
-        ['Home', '/','get'],
-        user ? ['Mypage','/mypage','get']:['Login', '/login','get'],
-        user ? ['Logout', '/logout','post']:['Register', '/register','get'],
-    ];
+function Menu({ onClick,menuItems }) {
     return (
         <div className="fixed top-0 left-0 w-full h-screen bg-white p-2">
             <IoCloseSharp className="size-[32px] xsm-2 fill-white bg-blue-500 p-1 rounded-md cursor-pointer hover:bg-blue-600" onClick={onClick} />
             <ul className="flex flex-col items-center p-30 h-full font-bold text-2xl text-blue-500 li.*:m-20">
-                { items.map((item, index) => (
+                { menuItems.map((item, index) => (
                     <Link as="li" href={item[1]} key={index} method={item[2]} className="m-2 cursor-pointer hover:text-blue-600">
                         {item[0]}
                     </Link>
@@ -38,7 +33,7 @@ export default function Header(props) {
                 <span className="text-2xl">Rose</span>
             </div>
             {typeof props.genres == 'undefined' ? null : <SearchBox {...props} />}
-            { open ? <Menu onClick={toggleMenu} user={props.user} /> : null }
+            { open ? <Menu menuItems={props.menuItems} onClick={toggleMenu} /> : null }
             { route().current('mypage') ? <span className="mx-10 font-bold text-2xl">{props.user.name}</span> : null }
         </header>
     );

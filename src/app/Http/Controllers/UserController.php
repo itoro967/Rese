@@ -54,7 +54,7 @@ class UserController extends Controller
         ])->onlyInput('email');
     }
     
-    public function registerUser(Request $request): RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -70,6 +70,6 @@ class UserController extends Controller
 
         Auth::login($user);
 
-        return redirect()->intended('dashboard');
+        return redirect()->intended('mypage');
     }
 }

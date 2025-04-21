@@ -4,7 +4,7 @@ import LoginForm from '@/common/LoginForm';
 export default function App() {
   return (
     <AppLayout>
-      <LoginForm formTitle="ログイン" url={route('login.authenticate')} />
+      <LoginForm formTitle="管理者ログイン" url={route('admin.login.authenticate')} />
     </AppLayout>
   );
 }

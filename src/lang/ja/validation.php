@@ -4,7 +4,7 @@ return [
 
     'required' => ':attributeは必須です。',
     'email' => ':attributeは有効なメールアドレス形式でなければなりません。',
-    
+    'confirmed' => ':attributeと確認用の値が一致しません。',
     'attributes' => [
         'name' => '名前',
         'email' => 'メールアドレス',
