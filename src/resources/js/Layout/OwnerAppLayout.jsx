@@ -1,9 +1,10 @@
 import React from 'react';
 import Header from '@/common/header';
 
-export default function AdminAppLayout({children}) {
+export default function OwnerAppLayout({children}) {
       const items = [
-          ['logout',route('admin.logout'),'get'],
+          ['logout',route('owner.logout'),'get'],
+          ['addRestaurant',route('restaurant.create'),'get'],
       ];
   return (
     <>

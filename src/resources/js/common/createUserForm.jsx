@@ -3,7 +3,7 @@ import { IoMdMail } from "react-icons/io";
 import { IoMdLock } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
 export default function CreateUserForm({formTitle,submitText,url}) {
-  const { data, setData, post, errors } = useForm({
+  const { data, setData, post, errors,reset } = useForm({
     email: '',
     name: '',
     password: '',
@@ -11,7 +11,7 @@ export default function CreateUserForm({formTitle,submitText,url}) {
   });
   const submit = (e) => {
     e.preventDefault();
-    post(url, data);
+    post(url, {data, onSuccess: () => reset()});
   };
   return (
     <form onSubmit={submit} className="inline-block bg-white shadow-md rounded-md m-10">
@@ -32,7 +32,7 @@ export default function CreateUserForm({formTitle,submitText,url}) {
         {errors.password_confirmation && <div className="text-red-500">{errors.password_confirmation}</div>}
         <div className="flex items-center">
           <IoMdLock className="size-6" /><input type="password" className="m-2 border-b border-gray-400 w-60" placeholder="Password Confirmation" value={data.password_confirmation} onChange={e=>setData('password_confirmation',e.target.value)}/>
-          </div>
+        </div>
         <button type="submit" className="cursor-pointer bg-blue-500 text-white rounded-md py-1 px-2 my-3 float-right">{submitText}</button>
       </div>
     </form>

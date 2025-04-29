@@ -14,7 +14,7 @@ export default function App({ restaurant,user }) {
                     </div>
                     <img src={restaurant.image_url} className="object-contain w-150"/>
                     <div className="my-3">#{restaurant.area.name} #{restaurant.genre.name}</div>
-                    <div>{restaurant.description}</div>
+                    <div className="whitespace-pre-wrap">{restaurant.description}</div>
                 </div>
                 <ReservationForm restaurant={restaurant} />
             </div>

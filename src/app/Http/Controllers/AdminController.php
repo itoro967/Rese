@@ -32,7 +32,7 @@ class AdminController extends Controller
         if (Auth::guard('admin')->attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended(route('admin.createOwner'));
+            return redirect()->intended(route('owner.login.register'));
         }
 
         return back()->withErrors([

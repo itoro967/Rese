@@ -16,7 +16,7 @@ Route::post('/register', [UserController::class, 'store'])->name('login.store');
 Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/login', [UserController::class, 'authenticate'])->name('login.authenticate');
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth:user'])->group(function () {
     Route::get('/mypage', [UserController::class, 'mypage'])->name('mypage');
     Route::post('/favorite', [FavoriteController::class, 'store'])->name('favorite.store');
     Route::post('/unfavorite', [FavoriteController::class, 'destroy'])->name('favorite.destroy');
@@ -36,4 +36,14 @@ Route::prefix('admin')->group(function () {
     });
 });
 
-
+// 店舗代表者用
+Route::prefix('owner')->group(function () {
+    Route::get('/login', [OwnerController::class, 'login'])->name('owner.login');
+    Route::post('/login', [OwnerController::class, 'authenticate'])->name('owner.login.authenticate');
+    Route::middleware(['auth:owner'])->group(function () {
+        Route::get('/logout', [OwnerController::class, 'logout'])->name('owner.logout');
+        Route::get('/index', [OwnerController::class, 'index'])->name('owner.index');
+        Route::get('/create', [RestaurantController::class, 'create'])->name('restaurant.create');
+        Route::post('/create', [RestaurantController::class, 'store'])->name('restaurant.store');
+    });
+});

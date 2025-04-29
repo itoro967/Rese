@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Restaurant extends Model
 {
+    protected $fillable = [
+        'name',
+        'image_url',
+        'description',
+        'genre_id',
+        'area_id',
+    ];
     public function Genre()
     {
         return $this->belongsTo(Genre::class)->select('id','name');

@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '@/common/header';
 
-export default function AdminAppLayout({ children, genres, areas, user }) {
+export default function AppLayout({ children, genres, areas, user }) {
       const items = [
           ['Home', '/','get'],
           user ? ['Mypage',route('mypage'),'get']:['Login', route('login'),'get'],
