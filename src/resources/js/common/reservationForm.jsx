@@ -17,7 +17,7 @@ export default function ReservationForm({ restaurant,correct,submitFunc=()=>{}})
         <div className="shrink-0 w-100 bg-blue-500 rounded-md">
             <form onSubmit={submit} className="relative h-full min-h-100 p-3" >
                 <div>
-                    <div className="font-bold text-2xl my-2">予約</div>
+                    <div className="font-bold text-2xl my-2 text-white">予約</div>
                     {errors.date && <div className="text-red-500">{errors.date}</div>}
                     <input type="date" value={data.date} onChange={e => setData('date', e.target.value)} className="bg-white border rounded-md w-32 h-6 my-2" />
                     {errors.time && <div className="text-red-500">{errors.time}</div>}

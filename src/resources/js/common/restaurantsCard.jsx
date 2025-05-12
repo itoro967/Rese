@@ -18,8 +18,8 @@ export function RestaurantsCard({ restaurant }) {
     <div className="h-1/2 w-full absolute bottom-0 bg-white rounded-b-md">
       <div className="text-lg font-bold p-2" >{restaurant.name}</div>
       <div>
-        <span className="p-2 fg-gray">#{restaurant.area.name}</span>
-        <span className="p-2 fg-gray">#{restaurant.genre.name}</span>
+        <span className="p-2 text-gray-700">#{restaurant.area.name}</span>
+        <span className="p-2 text-gray-700">#{restaurant.genre.name}</span>
       </div>
       <div className="flex justify-between items-center px-5">
         <Link href={route('detail',restaurant.id)} className="inline-block text-white bg-blue-500 hover:bg-blue-600 px-2 py-1 mx-2 my-6 rounded-lg shadow-lg active:shadow-none ">詳しく見る</Link>

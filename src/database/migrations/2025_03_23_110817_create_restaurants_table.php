@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('genre_id')->constrained()->restrictOnDelete();
             $table->text('description');
             $table->string('image_url');
+            $table->string('owner_id')->constrained('owners')->restrictOnDelete();
             $table->timestamps();
         });
     }

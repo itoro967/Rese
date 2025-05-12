@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Owner;
-use App\Models\Restaurant;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,8 +11,15 @@ class OwnerController extends Controller
 {
     public function index()
     {
-        $restaurants = Restaurant::with(['genre','area'])->select('id','name','image_url','genre_id','area_id')->get();
+        $restaurants = Auth::guard('owner')->user()->restaurants()
+            ->with(['genre','area'])->select('id','name','image_url','genre_id','area_id')->get();
         return Inertia::render('owner/index',compact('restaurants'));
+    }
+    public function detail(string $id)
+    {
+        $restaurant = Auth::guard('owner')->user()->restaurants()
+            ->with(['genre','area','reservations.user'])->select('id','name','image_url','description','genre_id','area_id')->find($id);
+        return Inertia::render('owner/detail',compact('restaurant'));
     }
     public function login()
     {

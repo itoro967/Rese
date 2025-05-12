@@ -3,8 +3,9 @@ import Header from '@/common/header';
 
 export default function OwnerAppLayout({children}) {
       const items = [
-          ['logout',route('owner.logout'),'get'],
+          ['home',route('owner.index'),'get'],
           ['addRestaurant',route('restaurant.create'),'get'],
+          ['logout',route('owner.logout'),'get'],
       ];
   return (
     <>

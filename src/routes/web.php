@@ -43,6 +43,7 @@ Route::prefix('owner')->group(function () {
     Route::middleware(['auth:owner'])->group(function () {
         Route::get('/logout', [OwnerController::class, 'logout'])->name('owner.logout');
         Route::get('/index', [OwnerController::class, 'index'])->name('owner.index');
+        Route::get('/detail/{id}', [OwnerController::class, 'detail'])->name('owner.detail');
         Route::get('/create', [RestaurantController::class, 'create'])->name('restaurant.create');
         Route::post('/create', [RestaurantController::class, 'store'])->name('restaurant.store');
     });

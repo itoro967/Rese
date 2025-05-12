@@ -45,4 +45,8 @@ class Owner extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function restaurants()
+    {
+        return $this->hasMany(Restaurant::class);
+    }
 }

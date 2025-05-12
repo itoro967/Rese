@@ -13,6 +13,7 @@ class Restaurant extends Model
         'description',
         'genre_id',
         'area_id',
+        'owner_id',
     ];
     public function Genre()
     {
@@ -48,11 +49,30 @@ class Restaurant extends Model
         }
         return $query;
     }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
+    protected function reservationsCount(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->reservations()->count(),
+        );
+    }
     protected function isFavorite(): Attribute
     {
         return Attribute::make(
             get: fn() => $this->favorites()->where('user_id', auth()->id())->exists(),
         );
     }
-    protected $appends = ['is_favorite'];
+    // toArrayをオーバーライドして、ownerガードでログインしている場合のみreservations_countを追加
+    public function toArray()
+    {
+        $array = parent::toArray();
+        if (auth()->guard('owner')->check()) {
+            $array['reservations_count'] = $this->reservationsCount;
+        }
+        return $array;
+    }
 }

@@ -36,6 +36,7 @@ class RestaurantController extends Controller
             'description' => $request->description,
             'genre_id' => $request->genre,
             'area_id' => $request->area,
+            'owner_id' => auth()->user()->id,
         ]);
         return redirect()->route('owner.index');
     }

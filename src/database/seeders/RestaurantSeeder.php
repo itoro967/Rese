@@ -176,6 +176,7 @@ class RestaurantSeeder extends Seeder
             Area::create(['name' => $area]);
         };
         foreach ($restaurants as $restaurant) {
+            $restaurant['owner_id'] = 1;
             Restaurant::create($restaurant);
         }
     }
