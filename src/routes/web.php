@@ -7,6 +7,8 @@ use App\Http\Controllers\RestaurantController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReservationController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 
 Route::get('/', [RestaurantController::class, 'index'])->name('index');
 Route::get('/detail/{id}', [RestaurantController::class, 'detail'])->name('detail');
@@ -16,7 +18,25 @@ Route::post('/register', [UserController::class, 'store'])->name('login.store');
 Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/login', [UserController::class, 'authenticate'])->name('login.authenticate');
 
-Route::middleware(['auth:user'])->group(function () {
+// メール確認通知
+Route::get('/email/verify', function () {
+    return inertia('auth/VerifyEmail');
+
+})->middleware('auth')->name('verification.notice');
+
+// メール検証
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect()->route('mypage');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+// 確認メール再送信
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+    return back()->with('message', '確認メールを送信しました！');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+Route::middleware(['auth:user','verified'])->group(function () {
     Route::get('/mypage', [UserController::class, 'mypage'])->name('mypage');
     Route::post('/favorite', [FavoriteController::class, 'store'])->name('favorite.store');
     Route::post('/unfavorite', [FavoriteController::class, 'destroy'])->name('favorite.destroy');
