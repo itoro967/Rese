@@ -66,13 +66,21 @@ class Restaurant extends Model
             get: fn() => $this->favorites()->where('user_id', auth()->id())->exists(),
         );
     }
+    protected function ratingAverage(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->reservations()->avg('rating'),
+        );
+    }
+
     protected $appends = ['is_favorite'];
-    // toArrayをオーバーライドして、ownerガードでログインしている場合のみreservations_countを追加
+    // toArrayをオーバーライドして、ownerガードでログインしている場合のみデータデータ追加
     public function toArray()
     {
         $array = parent::toArray();
         if (auth()->guard('owner')->check()) {
             $array['reservations_count'] = $this->reservationsCount;
+            $array['rating_average'] = $this->ratingAverage;
         }
         return $array;
     }
