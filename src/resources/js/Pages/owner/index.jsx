@@ -10,7 +10,7 @@ function Restaurant({restaurant}) {
     ratingElements.push(<IoMdStar className="text-gray-300 inline size-5" key={i + 3} />);
   }
   return (
-    <div className="flex m-2 bg-white rounded-lg shadow-md">
+    <div className="flex m-2 bg-white rounded-lg shadow-md w-100">
       <img src={restaurant.image_url} alt="Restaurant" className="w-40 h-40 rounded-l-lg object-cover object-left" />
       <div className="flex-grow">
         <div className="text-lg font-bold p-2">{restaurant.name}</div>

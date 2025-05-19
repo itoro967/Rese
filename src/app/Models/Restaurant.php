@@ -66,6 +66,7 @@ class Restaurant extends Model
             get: fn() => $this->favorites()->where('user_id', auth()->id())->exists(),
         );
     }
+    protected $appends = ['is_favorite'];
     // toArrayをオーバーライドして、ownerガードでログインしている場合のみreservations_countを追加
     public function toArray()
     {
