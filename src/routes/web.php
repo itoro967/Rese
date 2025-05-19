@@ -24,6 +24,7 @@ Route::middleware(['auth:user'])->group(function () {
     Route::post('/reservation', [ReservationController::class, 'store'])->name('reservation.store');
     Route::post('/reservation/update/{id}', [ReservationController::class, 'update'])->name('reservation.update');
     Route::post('/reservation/delete', [ReservationController::class, 'destroy'])->name('reservation.destroy');
+    Route::post('/reservation/review', [ReservationController::class, 'review'])->name('reservation.review');
 });
 // 管理者用
 Route::prefix('admin')->group(function () {

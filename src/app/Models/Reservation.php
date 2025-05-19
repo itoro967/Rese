@@ -11,6 +11,8 @@ class Reservation extends Model
         'date',
         'time',
         'guest_count',
+        'review',
+        'rating',
     ];
     public function restaurant()
     {

@@ -14,7 +14,8 @@ class UserController extends Controller
         $user = Auth::user();
         $restaurants = $user->favorites()->with(['genre','area'])->select('restaurants.id','name','image_url','genre_id','area_id')->get();
         $reservations = $user->reservations()->with(['restaurant'=>fn($query) => $query->select('id','name')])
-                            ->select('id','restaurant_id','date','time','guest_count')->orderBy('date','asc')->orderBy('time','asc')->get();
+                            ->select('id','restaurant_id','date','time','guest_count')->orderBy('date','asc')->orderBy('time','asc')
+                            ->where('rating',null)->get();
         return Inertia::render('mypage',compact('user','restaurants','reservations'));
     }
     

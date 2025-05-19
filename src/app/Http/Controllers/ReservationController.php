@@ -32,4 +32,13 @@ class ReservationController extends Controller
         auth()->user()->reservations()->find($id)->delete();
         return redirect()->route('mypage');
     }
+    public function Review(Request $request)
+    {
+        $reservation = auth()->user()->reservations()->find($request->input('id'));
+        $reservation->update([
+            'review' => $request->input('review'),
+            'rating' => $request->input('rating'),
+        ]);
+        return redirect()->route('mypage');
+    }
 }
