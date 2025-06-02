@@ -1,5 +1,5 @@
 import AppLayout from '@/Layout/AppLayout';
-import LoginForm from '@/common/LoginForm';
+import LoginForm from '@/common/loginForm';
 
 export default function App() {
   return (

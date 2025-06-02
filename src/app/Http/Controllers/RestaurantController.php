@@ -7,6 +7,7 @@ use App\Models\Area;
 use App\Models\Genre;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class RestaurantController extends Controller
@@ -30,9 +31,12 @@ class RestaurantController extends Controller
 
     public function store(RestaurantRequest $request)
     {
+        $filePath = $request->file('restaurant_image')->store('restaurants', 's3');
+        $url = Storage::disk('s3')->url($filePath);
+
         Restaurant::create([
             'name' => $request->restaurant_name,
-            'image_url' => asset('storage/' . $request->file('restaurant_image')->store('restaurants','public')),
+            'image_url' => $url,
             'description' => $request->description,
             'genre_id' => $request->genre,
             'area_id' => $request->area,

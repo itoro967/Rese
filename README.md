@@ -40,6 +40,24 @@ users ||--o{ reservations:""
 restaurants ||--o{ reservations:""
 genres ||--o{ restaurants:""
 areas ||--o{ restaurants:""
+owners ||--o{ restaurants:""
+
+admins{
+    unsigned_bigint id PK
+    string name
+    string email UK
+    string password
+    timestamp created_at
+    timestamp updated_at
+}
+owners{
+    unsigned_bigint id PK
+    string name
+    string email UK
+    string password
+    timestamp created_at
+    timestamp updated_at
+}
 users{
     unsigned_bigint id PK
     string name
@@ -62,6 +80,8 @@ reservations{
     date date
     time time
     unsigned_tinyint guest_count
+    unsigned_tinyint rating
+    text review 
     timestamp created_at
     timestamp updated_at
 }
@@ -70,6 +90,7 @@ restaurants{
     string name
     unsigned_int area_id FK
     unsigned_int genre_id FK
+    unsigned_int owner_id FK
     text description
     string image_url
     timestamp created_at
