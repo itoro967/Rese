@@ -33,7 +33,7 @@ class RestaurantController extends Controller
     {
         $filePath = $request->file('restaurant_image')->store('restaurants', 's3');
         $url = Storage::disk('s3')->url($filePath);
-
+        Storage::disk('s3')->setVisibility($filePath, 'public');
         Restaurant::create([
             'name' => $request->restaurant_name,
             'image_url' => $url,
