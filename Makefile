@@ -8,6 +8,7 @@ init:
 	docker compose exec php php artisan storage:link
 
 	docker compose exec php npm install
+	docker compose exec php npm run build
 
 start:
 	docker compose start
