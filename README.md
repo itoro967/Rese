@@ -1,7 +1,9 @@
 # Rese - 飲食店予約サービス
+
 ## アプリケーションURL
 - デプロイ(AWS) http://rese-develop.jp/
 - 開発環境(docker) [localhost](http://localhost)
+
 ### パス一覧
 |パス|説明|備考|
 |-|-|-|
@@ -22,6 +24,7 @@
 - 店舗情報登録機能
 
 ## 環境構築
+
 ### MAC Makefile
 1. ```git clone https://github.com/itoro967/Rese.git```
 1. ```cd Rese```
@@ -37,6 +40,13 @@
 - React 19.0.0
 - tailwind 4.0.15
 - inertia 2.0.5
+
+## デプロイ環境(AWS)
+- バックエンド EC2
+- ストレージ S3
+- データベース RDS
+- ドメイン お名前.com, Route53
+- メール Gmail
 
 ## ER図
 ```mermaid
@@ -126,6 +136,16 @@ areas{
 |管理者|admin@admin.jp|password|
 
 ## 備考
+
+### メール認証について
+
+#### デプロイ環境
+Gmailを使用しているため、ユーザー登録の際は実際に使用可能なメールアドレスを使用してください。
+
+#### 開発環境
+MailHogを使用しているため、メールの確認では下記にアクセスしてください
+
+http://localhost:8025
 
 ### 店舗評価機能について
 評価機能では来店したことを予約カード左下の「来店」ボタンを押下することで
