@@ -1,7 +1,7 @@
 # Rese - 飲食店予約サービス
 ## アプリケーションURL
 - デプロイ(AWS) http://rese-develop.jp/
-- 開発環境(docker) [localhost](localhost)
+- 開発環境(docker) [localhost](http://localhost)
 ### パス一覧
 |パス|説明|備考|
 |-|-|-|
@@ -26,7 +26,7 @@
 1. ```git clone https://github.com/itoro967/Rese.git```
 1. ```cd Rese```
 1. ```make init```
-1. ```docker compose exec php npm run dev```
+
 ### 使用技術
 - mysql 9.0.1
 - nginx 1.27.2
@@ -130,4 +130,5 @@ areas{
 ### 店舗評価機能について
 評価機能では来店したことを予約カード左下の「来店」ボタンを押下することで
 擬似的に判断し、評価(レビュー)できるようにした。
+
 ![予約カード｀](img/予約カード.png)
